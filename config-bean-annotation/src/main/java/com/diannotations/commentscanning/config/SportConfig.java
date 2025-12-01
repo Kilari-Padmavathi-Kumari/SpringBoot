@@ -1,0 +1,16 @@
+package com.diannotations.commentscanning.config;
+
+import com.diannotations.commentscanning.common.Coach;
+import com.diannotations.commentscanning.common.SwimCoach;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class SportConfig {
+
+    @Bean
+    public Coach swimCoach()
+    {
+        return new SwimCoach();
+    }
+}
