@@ -27,8 +27,15 @@ public class AppDAOImp implements AppDAo {
 
     @Override
     public Course findCourseAndStudentsByCourseId(int theId) {
-        TypedQuery<Course> query=
-        return null;
+        TypedQuery<Course> query=entityManager.createQuery(
+             "select c from Course c "
+             +"JOIN FETCH c.student "
+             +"where c.id=:data",Course.class);
+        query.setParameter("data",theId);
+
+        Course course=query.getSingleResult();
+        return  course;
+
     }
 
     @Override
@@ -36,31 +43,3 @@ public class AppDAOImp implements AppDAo {
         return entityManager.find(InstructorDetails.class, theId);
     }
 }
-
-
-
-import java.util.HashMap;
-import java.util.Map;
-
-class A {
-    public static void main(String[] args) {
-        String str = "aabbcdea";
-
-        Map<Character, Integer> frequencyMap = new HashMap<>();
-
-        // Count frequency of each character
-        for (char ch : str.toCharArray()) {
-            frequencyMap.put(ch, frequencyMap.getOrDefault(ch, 0) + 1);
-        }
-
-        // Build result with characters appearing only once
-        StringBuilder result = new StringBuilder();
-        for (char ch : str.toCharArray()) {
-            if (frequencyMap.get(ch) == 1) {
-                result.append(ch);
-            }
-        }
-
-        System.out.println(result.toString());  // Output: "cd e" (without spaces)
-    }
-} output in strings

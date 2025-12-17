@@ -17,8 +17,20 @@ public class RelationshipApplication {
     @Bean
     public CommandLineRunner commandLineRunner(AppDAo appDAo) {
         return runner -> {
-           createCourseAndStudent(appDAo);
+          findCourseAndStudent(appDAo);
         };
+    }
+
+    private void findCourseAndStudent(AppDAo appDAo) {
+        int theId=10;
+        Course tempCourse=appDAo.findCourseAndStudentsByCourseId(theId);
+
+        System.out.println("load course : "+tempCourse);
+
+        System.out.println("student : "+tempCourse.getStudent());
+
+        System.out.println("Done!!");
+
     }
 
     private void createCourseAndStudent(AppDAo appDAo) {
